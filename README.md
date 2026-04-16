@@ -53,21 +53,17 @@ This will deactivate the server and stop the game from running.
 
 2. **Main Menu**: 
    - Enter your player name
-   - Select the number of opponents (AI difficulty)
+   - Select the number of opponents
    - Click "Start Game" to begin
 
 3. **How to Play**: 
-   - Click "How to Play" from the main menu to learn the rules
-   - Includes interactive tutorial with card mechanics
+   - Click "How to Play" from the main menu to learn the rules and mechanics
 
 4. **During Gameplay**:
    - Click on cards in your hand to play them
    - Match the color or number of the card on the pile
    - Draw cards when you can't play
-   - Use special cards (Skip, Reverse, Draw Two, Wild, Wild Draw Four) strategically
-
-5. **Exit Game**: 
-   - Return to main menu at any time during gameplay
+   - Use special cards strategically to be victorious
 
 ## Troubleshooting
 
