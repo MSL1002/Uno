@@ -1,0 +1,244 @@
+$clr-primary: #dc2626;
+$clr-primary-dark: #b91c1c;
+$clr-background: #0d0d0d;
+$clr-card-bg: #161616;
+$clr-input-bg: #1e1e1e;
+$clr-border: #2a2a2a;
+$clr-border-light: #2e2e2e;
+$clr-text-primary: #e5e5e5;
+$clr-text-secondary: #888;
+$clr-text-muted: #555;
+$clr-text-dark: #666;
+$clr-accent: #1e1010;
+$clr-chip-bg: #222;
+$clr-accent-light: #444;
+
+$font-family-main: Georgia, serif;
+$font-size-logo: 52px;
+$font-size-label: 11px;
+$font-size-input: 15px;
+$font-size-opponent-num: 28px;
+$font-size-opponent-label: 10px;
+$font-size-button: 13px;
+$font-size-arrow: 18px;
+
+$spacing-xs: 2px;
+$spacing-sm: 4px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 48px;
+$spacing-2xl: 56px;
+
+$border-radius-sm: 2px;
+$border-radius-md: 3px;
+$border-radius-lg: 4px;
+
+$transition-fast: 0.15s;
+$transition-normal: 0.2s;
+
+$z-index-noise: 0;
+$z-index-content: 1;
+
+// Mixins
+@mixin button-reset {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+@mixin focus-transition {
+  transition: all $transition-fast;
+}
+
+@mixin text-uppercase {
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Main container
+.setupRoot {
+  min-height: 100vh;
+  background: $clr-background;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $font-family-main;
+  position: relative;
+  overflow: hidden;
+
+  // Main card
+  .card {
+    position: relative;
+    z-index: $z-index-content;
+    background: $clr-card-bg;
+    border: 1px solid $clr-border;
+    border-radius: $border-radius-md;
+    padding: $spacing-xl $spacing-2xl;
+    width: 100%;
+    max-width: 520px;
+    box-shadow: 0 0 80px rgba($clr-primary, 0.08);
+  }
+
+  // UNO Logo
+  .logoUno {
+    display: flex;
+    align-items: center;
+    font-size: $font-size-logo;
+    font-weight: 900;
+    color: $clr-primary;
+    letter-spacing: -2px;
+    line-height: 1;
+    font-style: italic;
+  }
+
+  // Labels
+  label {
+    display: block;
+    color: $clr-text-secondary;
+    font-size: $font-size-label;
+    @include text-uppercase;
+    margin-bottom: $spacing-md;
+  }
+
+  // Inputs
+  input {
+    width: 100%;
+    background: $clr-input-bg;
+    border: 1px solid $clr-border-light;
+    border-radius: $border-radius-md;
+    color: $clr-text-primary;
+    font-size: $font-size-input;
+    padding: $spacing-lg;
+    outline: none;
+    font-family: inherit;
+    box-sizing: border-box;
+    transition: border-color $transition-normal;
+
+    &:focus {
+      border-color: $clr-primary;
+    }
+  }
+
+  // Opponent selection grid
+  .opponentGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: $spacing-md;
+
+    button {
+      background: #1a1a1a;
+      border: 1px solid $clr-border;
+      border-radius: $border-radius-lg;
+      padding: $spacing-lg $spacing-md;
+      text-align: center;
+      @include button-reset;
+      @include focus-transition;
+
+      &:hover {
+        border-color: $clr-accent-light;
+        background: $clr-input-bg;
+      }
+
+      &.active {
+        background: $clr-accent;
+        border-color: $clr-primary;
+        box-shadow: 0 0 20px rgba($clr-primary, 0.12);
+      }
+    }
+  }
+
+  // Opponent number
+  .opponentNum {
+    display: block;
+    font-size: $font-size-opponent-num;
+    font-weight: 700;
+    color: $clr-text-primary;
+    line-height: 1;
+    margin-bottom: $spacing-sm;
+  }
+
+  // Opponent label
+  .opponentLabel {
+    display: block;
+    font-size: $font-size-opponent-label;
+    color: $clr-text-muted;
+    letter-spacing: 2px;
+    margin-bottom: $spacing-lg;
+  }
+
+  // AI list
+  .aiList {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  // AI chip badge
+  .aiChip {
+    display: block;
+    font-size: $font-size-opponent-label;
+    color: $clr-text-dark;
+    background: $clr-chip-bg;
+    border-radius: $border-radius-sm;
+    padding: $spacing-xs $spacing-md;
+  }
+
+  // Start button
+  .startBtn {
+    width: 100%;
+    background: $clr-primary;
+    border: none;
+    border-radius: $border-radius-md;
+    color: #fff;
+    font-size: $font-size-button;
+    font-weight: 700;
+    letter-spacing: 4px;
+    padding: $spacing-lg;
+    @include button-reset;
+    @include flex-center;
+    gap: $spacing-md;
+    @include focus-transition;
+
+    &:hover {
+      background: $clr-primary-dark;
+      transform: scale(1.02);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  // Arrow icon in button
+  .startArrow {
+    font-size: $font-size-arrow;
+    font-weight: 400;
+  }
+
+  // How to play button
+  .howToPlayBtn {
+    width: 100%;
+    margin-top: $spacing-lg;
+    padding: $spacing-md;
+    margin-bottom: $spacing-lg;
+    background-color: #e8f0fe;
+    border: 2px solid $clr-primary;
+    border-radius: $border-radius-lg;
+    color: $clr-primary;
+    font-weight: 600;
+    @include button-reset;
+    @include focus-transition;
+
+    &:hover {
+      background-color: $clr-primary;
+      color: white;
+      transform: translateY(-2px);
+    }
+  }
+}

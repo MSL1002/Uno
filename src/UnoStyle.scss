@@ -1,0 +1,316 @@
+// Variables
+$bg-main: #0a0a0a;
+$bg-panel: #0d0d0d;
+$bg-card: #111;
+$border: #1e1e1e;
+$text-main: #e5e5e5;
+$text-dim: #666;
+$text-muted: #444;
+$accent-red: #dc2626;
+$accent-red-dark: #991b1b;
+
+// Root
+.root {
+  height: 100vh;
+  background: $bg-main;
+  color: $text-main;
+  font-family: 'Georgia', serif;
+  position: relative;
+  overflow: hidden;
+}
+
+// Background glow
+.glow {
+  position: fixed;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.04;
+  filter: blur(120px);
+  pointer-events: none;
+  z-index: 0;
+  transition: background 0.8s;
+}
+
+// Layout
+.layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: 100vh;
+
+  .sidebar {
+    width: 220px;
+    background: $bg-panel;
+    border-right: 1px solid $border;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 16px;
+
+    .sideHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+
+      .logoSmall {
+        font-size: 28px;
+        font-weight: 900;
+        font-style: italic;
+        letter-spacing: -1px;
+        transition: color 0.5s;
+      }
+
+      .exitBtn {
+        background: none;
+        border: 1px solid #2a2a2a;
+        color: #555;
+        border-radius: 3px;
+        padding: 4px 8px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+    }
+
+    .deckInfo {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      padding: 12px;
+      background: $bg-card;
+      border: 1px solid $border;
+      border-radius: 4px;
+
+      .deckStat {
+        display: flex;
+        flex-direction: column;
+
+        .deckNum {
+          font-size: 22px;
+          font-weight: 700;
+          line-height: 1;
+        }
+
+        .deckLabel {
+          font-size: 10px;
+          color: #555;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    .logBox {
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .logEntry {
+        font-size: 11px;
+        color: $text-dim;
+        border-bottom: 1px solid #1a1a1a;
+        padding-bottom: 6px;
+      }
+    }
+  }
+
+  .table {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 16px;
+
+    // Opponents
+    .opponents {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+
+      .opponentArea {
+        background: $bg-card;
+        border: 1px solid $border;
+        border-radius: 6px;
+        padding: 12px 16px;
+        min-width: 160px;
+        transition: all 0.3s;
+
+        &.activePlayer {
+          border-color: var(--accent);
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.04);
+        }
+
+        .opponentName {
+          font-size: 13px;
+          font-weight: 600;
+          color: #aaa;
+          margin-bottom: 10px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+
+          .unoBadge {
+            background: $accent-red;
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 3px;
+            letter-spacing: 1px;
+          }
+
+          .thinkingDot {
+            color: #555;
+            animation: pulse 1s infinite;
+          }
+        }
+
+        .aiCards {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 3px;
+          margin-bottom: 8px;
+
+          .aiCard {
+            width: 14px;
+            height: 20px;
+            background: $accent-red;
+            border: 1px solid $accent-red-dark;
+            border-radius: 2px;
+          }
+
+          .aiCardExtra {
+            font-size: 10px;
+            color: $text-dim;
+          }
+        }
+
+        .cardCount {
+          font-size: 10px;
+          color: $text-muted;
+          letter-spacing: 1px;
+        }
+      }
+    }
+
+    // Play Area
+    .playArea {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 48px;
+
+      .pileGroup {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+
+        .pileLabel {
+          font-size: 10px;
+          color: $text-muted;
+          letter-spacing: 2px;
+          text-transform: uppercase;
+        }
+
+        .drawPile {
+          transition: transform 0.15s;
+
+          &.clickable {
+            cursor: pointer;
+
+            &:hover {
+              transform: scale(1.05);
+            }
+          }
+
+          .cardBack {
+            width: 80px;
+            height: 120px;
+            background: $accent-red;
+            border: 3px solid $accent-red-dark;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 3px 3px 0 #7f1d1d,
+              0 4px 24px rgba(220, 38, 38, 0.3);
+
+            .cardBackLogo {
+              color: #fff;
+              font-weight: 900;
+              font-size: 18px;
+              font-style: italic;
+              letter-spacing: -1px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.directionRow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.turnIndicator {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.turnIndicator.activeTurn {
+  background: rgba(220, 38, 38, 0.18);
+  border-color: rgba(220, 38, 38, 0.35);
+  color: #fff;
+}
+
+.hand{
+  display: flex;
+  flex-direction: row;
+  
+  gap: 12px;
+  justify-content: center;
+}
+
+.playBtn {
+  margin-bottom: 50px;
+  background: $accent-red;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background: $accent-red-dark;
+  }
+}
+
+// Animation
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
