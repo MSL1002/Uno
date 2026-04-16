@@ -26,7 +26,7 @@ git clone <repository-url>
 
 ### Step 2: CD into the game's directery
 ```bash
-cd CSC130/uno
+cd Uno
 ```
 
 ## Running the Game
@@ -35,12 +35,17 @@ cd CSC130/uno
 ```bash
 npm start
 ```
-This command installs dependencies (if needed) and automatically starts the local server.
+This command installs dependencies and automatically starts the local server.
 
 ### Step 2: Go to the link to localhost provided in the console output
 ```bash
 Local:   http://localhost:XXXX/
 ```
+
+## Stopping the game
+
+To stop the game, return back to the initial command prompt and press "Ctrl + C".
+This will deactivate the server and stop the game from running.
 
 ## Usage
 
